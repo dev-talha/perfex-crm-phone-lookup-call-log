@@ -1,0 +1,67 @@
+.unified-phone-panel { border-top: 3px solid #2563eb; }
+.unified-phone-search-form { max-width: 550px; margin: 25px auto; }
+.unified-hero .panel-body { padding: 22px 24px; }
+.unified-hero h3 { margin-top: 0; }
+.unified-hero-actions .btn { margin-left: 6px; }
+.unified-summary-row { margin-bottom: 10px; }
+.unified-summary-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:14px 16px; margin-bottom:15px; box-shadow:0 1px 2px rgba(15,23,42,.04); color:#64748b; }
+.unified-summary-card span { display:block; font-size:24px; font-weight:700; color:#0f172a; line-height:1; margin-bottom:4px; }
+.unified-section-panel h4 { margin-top:0; display:flex; align-items:center; gap:7px; }
+.unified-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; margin-bottom: 12px; background: #fff; box-shadow:0 1px 2px rgba(15,23,42,.04); }
+.unified-card:hover { border-color:#cbd5e1; box-shadow:0 4px 10px rgba(15,23,42,.06); }
+.unified-card-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.unified-card-head strong { font-size:14px; color:#0f172a; }
+.unified-related-box { border:1px solid #e5e7eb; border-radius:10px; padding:12px; margin-bottom:15px; min-height:122px; background:#fff; }
+.unified-related-title { font-weight:600; margin-bottom:8px; color:#334155; }
+.unified-related-title .badge { float:right; }
+.unified-related-list { padding-left:18px; margin-bottom:0; }
+.unified-related-list li { margin-bottom:8px; }
+.unified-settings-table .form-group { margin-bottom:0; }
+.unified-section-title { margin-top:0; color:#334155; }
+.unified-color-dot { display:inline-block; width:12px; height:12px; border-radius:50%; vertical-align:middle; margin-right:4px; }
+.unified-metrics .metric { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 15px; }
+.unified-metrics .metric span { display: block; color: #64748b; font-size: 12px; font-weight: 400; margin-top: 4px; }
+.table-call-logs td { vertical-align: middle !important; }
+.unified-summary-link { display:block; text-decoration:none !important; color:#64748b !important; cursor:pointer; }
+.unified-summary-link:hover { border-color:#2563eb; box-shadow:0 4px 12px rgba(37,99,235,.12); }
+.unified-call-log-modal .modal-body { padding-top: 25px; }
+.unified-call-log-modal .form-group { margin-bottom: 18px; }
+.unified-call-log-modal textarea { min-height: 120px; }
+.unified-call-log-edit-form .form-group { margin-bottom: 18px; }
+.unified-call-log-edit-form textarea { min-height: 140px; }
+
+.unified-settings-tabs { margin-bottom: 20px; }
+.unified-settings-tabs > li > a { font-weight: 600; }
+.unified-settings-tab-content { padding: 15px 0 5px; }
+.unified-call-by-sip-page .panel_s { border-radius: 8px; }
+.unified-recording-player { width: 100%; max-width: 520px; display: block; margin-top: 5px; }
+.unified-call-log-modal .modal-header { border-bottom: 1px solid #e5e7eb; }
+.unified-call-log-modal .form-group { margin-bottom: 15px; }
+@media (max-width: 767px) {
+  .unified-settings-tabs > li { float: none; display: block; }
+  .unified-call-by-sip-page .btn-lg { margin-top: 10px; }
+}
+
+.unified-sip-card { max-width:430px; margin-left:auto; margin-right:auto; border-top: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
+.unified-sip-card .panel-body { padding: 26px; }
+.unified-sip-header h3 { font-weight: 700; color: #0f172a; }
+.unified-sip-display .form-control { border-radius: 12px; height: 54px; font-size: 22px; letter-spacing: .5px; }
+.unified-dialpad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.unified-dial-key { border-radius: 12px !important; font-size: 22px; font-weight: 700; height: 54px; background: #f8fafc; border-color: #e5e7eb; }
+.unified-dial-key:hover { background: #eef2ff; border-color: #c7d2fe; }
+.unified-outcome-badge { display:inline-block; color:#fff; border-radius:999px; padding:3px 9px; font-size:11px; font-weight:600; line-height:1.4; }
+
+
+/* Final UI polish: keep call log action buttons aligned and compact. */
+.table-call-logs th:last-child,
+.table-call-logs td.unified-options-cell { width: 132px; min-width: 132px; text-align: center; white-space: nowrap; }
+.unified-call-actions { display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: nowrap; white-space: nowrap; }
+.unified-call-actions .btn { margin: 0 !important; width: 32px; height: 30px; line-height: 28px; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+.unified-recording-label { display: flex; align-items: center; gap: 6px; }
+.unified-recording-info { display:inline-flex; align-items:center; justify-content:center; width:17px; height:17px; border-radius:50%; background:#eef2ff; color:#2563eb; font-size:11px; font-weight:700; text-decoration:none !important; border:1px solid #c7d2fe; }
+.unified-recording-note { margin-top: 5px; line-height: 1.35; }
+@media (max-width: 767px) {
+  .table-call-logs th:last-child, .table-call-logs td.unified-options-cell { width: 118px; min-width: 118px; }
+  .unified-call-actions { gap: 4px; }
+  .unified-call-actions .btn { width: 30px; height: 29px; }
+}
