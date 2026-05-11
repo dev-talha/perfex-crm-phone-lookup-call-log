@@ -1,7 +1,7 @@
 # Unified Phone Search & Call Log Module — Developer README
 
 ![Perfex CRM](https://img.shields.io/badge/Perfex%20CRM-Module-blue)
-![Version](https://img.shields.io/badge/version-1.17.0-success)
+![Version](https://img.shields.io/badge/version-1.19.0-success)
 ![PHP](https://img.shields.io/badge/PHP-CodeIgniter%203-informational)
 ![Status](https://img.shields.io/badge/status-production--ready-brightgreen)
 
@@ -16,12 +16,12 @@ The module is designed around Bangladesh phone-number normalization and fast CRM
 ## 2. Current Version
 
 ```text
-Module Version: 1.17.0
+Module Version: 1.19.0
 Module Folder: unified_phone
 Perfex Path: public_html/modules/unified_phone
 ```
 
-### Major capabilities in v1.17
+### Major capabilities in v1.19
 
 - Central phone lookup page.
 - Bangladesh phone number normalization.
