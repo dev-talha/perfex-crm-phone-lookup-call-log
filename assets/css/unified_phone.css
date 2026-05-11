@@ -65,3 +65,43 @@
   .unified-call-actions { gap: 4px; }
   .unified-call-actions .btn { width: 30px; height: 29px; }
 }
+
+
+.unified-floating-call-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(37,99,235,.32);
+  text-decoration: none !important;
+  font-size: 20px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.unified-floating-call-btn:hover,
+.unified-floating-call-btn:focus {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37,99,235,.38);
+  color: #fff !important;
+}
+@media (max-width: 767px) {
+  .unified-floating-call-btn { right: 15px; bottom: 15px; width: 46px; height: 46px; font-size: 18px; }
+}
+
+
+/* Lead modal Call Log tab compact spacing */
+.unified-lead-call-log-tab { margin-top: 0; }
+.unified-lead-call-log-tab .col-md-12 { padding-top: 8px; }
+.unified-lead-call-log-actions { margin: 0 0 8px; }
+.unified-lead-call-log-note { margin: 0 0 10px; }
+.unified-lead-call-log-tab .table-responsive,
+.unified-lead-call-log-tab .table { margin-top: 0; margin-bottom: 0; }
+.unified-lead-call-log-tab .btn { margin-bottom: 0; }

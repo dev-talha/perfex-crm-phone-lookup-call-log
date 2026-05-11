@@ -117,11 +117,10 @@ if (!function_exists('unified_phone_result_sections')) {
             'proposals' => 'proposals',
             'estimates' => 'estimates',
             'invoices' => 'invoices',
-            'payments' => 'payments',
             'projects' => 'projects',
             'contracts' => 'contracts',
             'tickets' => 'tickets',
-            'chatwoot' => 'Chatwoot',
+            'chatwoot' => 'Unichat',
             'call_logs' => 'unified_phone_previous_call_logs',
         ];
     }
@@ -325,8 +324,6 @@ if (!function_exists('unified_phone_related_url')) {
                 return admin_url('tickets/ticket/' . $id);
             case 'proposal':
                 return admin_url('proposals/list_proposals/' . $id);
-            case 'payment':
-                return admin_url('payments/payment/' . $id);
         }
         return '';
     }
@@ -364,8 +361,6 @@ if (!function_exists('unified_phone_related_record_name')) {
                 return $row ? $row['subject'] : 'Ticket #' . $id;
             case 'proposal':
                 return function_exists('format_proposal_number') ? format_proposal_number($id) : 'Proposal #' . $id;
-            case 'payment':
-                return 'Payment #' . $id;
         }
         return ucfirst($type) . ' #' . $id;
     }

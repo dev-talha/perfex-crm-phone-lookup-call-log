@@ -31,6 +31,7 @@
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_reporting_enabled', 'unified_phone_reporting_enabled'); ?></div>
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_export_enabled', 'unified_phone_export_enabled'); ?></div>
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_edit_after_save', 'unified_phone_edit_after_save'); ?></div>
+                <div class="col-md-3"><?php render_yes_no_option('unified_phone_floating_call_button_enabled', 'unified_phone_floating_call_button_enabled'); ?></div>
             </div>
         </div>
 

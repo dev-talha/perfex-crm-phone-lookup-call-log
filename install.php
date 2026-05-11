@@ -134,6 +134,7 @@ $default_options = [
     'unified_phone_recording_enabled' => '1',
     'unified_phone_recording_max_size' => '10240',
     'unified_phone_recording_allowed_types' => 'mp3,wav,m4a,ogg,webm,mp4',
+    'unified_phone_floating_call_button_enabled' => '1',
 ];
 
 
@@ -158,7 +159,7 @@ if (!is_dir($recording_upload_dir)) {
 @file_put_contents($recording_upload_dir . 'index.html', '');
 
 $section_options = [
-    'customers', 'contacts', 'leads', 'proposals', 'estimates', 'invoices', 'payments', 'projects', 'contracts',
+    'customers', 'contacts', 'leads', 'proposals', 'estimates', 'invoices', 'projects', 'contracts',
     'tickets', 'chatwoot', 'call_logs'
 ];
 foreach ($section_options as $section) {

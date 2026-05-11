@@ -20,7 +20,7 @@
         <?php if (unified_phone_section_enabled('call_logs')) { ?><div class="col-md-3 col-sm-6"><a href="#unified-previous-call-logs-section" class="unified-summary-card unified-summary-link"><span><?php echo (int) $call_logs_total; ?></span><?php echo _l('unified_phone_previous_call_logs'); ?></a></div><?php } ?>
         <?php if (!empty($chatwoot_enabled)) { ?>
             <?php $chatwootCount = count((array) ($chatwoot['conversations'] ?? [])); ?>
-            <div class="col-md-3 col-sm-6"><a href="#unified-chatwoot-section" class="unified-summary-card unified-summary-link"><span><?php echo (int) $chatwootCount; ?></span>Chatwoot</a></div>
+            <div class="col-md-3 col-sm-6"><a href="#unified-chatwoot-section" class="unified-summary-card unified-summary-link"><span><?php echo (int) $chatwootCount; ?></span>Unichat</a></div>
         <?php } ?>
     </div>
 

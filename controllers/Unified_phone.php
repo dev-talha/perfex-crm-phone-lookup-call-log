@@ -54,6 +54,11 @@ class Unified_phone extends AdminController
             set_alert('warning', _l('unified_phone_phone_required'));
             redirect(admin_url('unified_phone'));
         }
+        $digitsOnly = preg_replace('/\D+/', '', $phone);
+        if (strlen($digitsOnly) < 4) {
+            set_alert('warning', _l('unified_phone_min_digits_error'));
+            redirect(admin_url('unified_phone'));
+        }
 
         $defaultLimit = unified_phone_section_limit('default', 10);
         $data = $this->lookup_model->lookup($phone, $defaultLimit);
@@ -256,7 +261,7 @@ class Unified_phone extends AdminController
                 'unified_phone_edit_after_save', 'unified_phone_agents_edit_own', 'unified_phone_agents_delete_own',
                 'unified_phone_limit_default', 'unified_phone_limit_call_logs', 'unified_phone_limit_call_logs_history',
                 'unified_phone_sip_enabled', 'unified_phone_global_click_to_call_enabled', 'unified_phone_sip_uri_scheme',
-                'unified_phone_recording_enabled', 'unified_phone_recording_max_size', 'unified_phone_recording_allowed_types'
+                'unified_phone_recording_enabled', 'unified_phone_recording_max_size', 'unified_phone_recording_allowed_types', 'unified_phone_floating_call_button_enabled'
             ];
             foreach (array_keys(unified_phone_add_log_required_fields()) as $requiredField) {
                 $fields[] = 'unified_phone_required_' . $requiredField;
@@ -268,7 +273,7 @@ class Unified_phone extends AdminController
                 'unified_phone_enabled', 'unified_phone_normalization_enabled', 'unified_phone_like_search_enabled',
                 'unified_phone_chatwoot_enabled', 'unified_phone_cache_enabled', 'unified_phone_reporting_enabled',
                 'unified_phone_export_enabled', 'unified_phone_edit_after_save', 'unified_phone_agents_edit_own',
-                'unified_phone_agents_delete_own', 'unified_phone_sip_enabled', 'unified_phone_global_click_to_call_enabled', 'unified_phone_recording_enabled'
+                'unified_phone_agents_delete_own', 'unified_phone_sip_enabled', 'unified_phone_global_click_to_call_enabled', 'unified_phone_recording_enabled', 'unified_phone_floating_call_button_enabled'
             ];
             foreach (array_keys(unified_phone_add_log_required_fields()) as $requiredField) {
                 $yesNo[] = 'unified_phone_required_' . $requiredField;
@@ -459,10 +464,12 @@ class Unified_phone extends AdminController
             show_404();
         }
 
-        $logs = $this->call_log_model->get_for_lead_phone($lead, 100);
+        $logs = $this->call_log_model->get_for_lead_phone($lead, 10);
+        $total = $this->call_log_model->count_for_lead_phone($lead);
         $this->load->view('unified_phone/lead_tabs/call_logs', [
-            'lead'      => $lead,
-            'call_logs' => $logs,
+            'lead'       => $lead,
+            'call_logs'  => $logs,
+            'total_logs' => $total,
         ]);
     }
 

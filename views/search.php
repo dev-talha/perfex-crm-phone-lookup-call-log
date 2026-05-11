@@ -6,7 +6,7 @@
         <p class="text-muted"><?php echo _l('unified_phone_search_help'); ?></p>
         <?php echo form_open(admin_url('unified_phone/search'), ['method' => 'get', 'class' => 'unified-phone-search-form']); ?>
             <div class="input-group input-group-lg">
-                <input type="text" name="phone" class="form-control" placeholder="01712345678 / 8801712345678" required autofocus>
+                <input type="text" name="phone" class="form-control" required minlength="4" pattern=".*[0-9].*[0-9].*[0-9].*[0-9].*" title="<?php echo html_escape(_l('unified_phone_min_digits_error')); ?>" autofocus>
                 <span class="input-group-btn"><button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> <?php echo _l('search'); ?></button></span>
             </div>
         <?php echo form_close(); ?>

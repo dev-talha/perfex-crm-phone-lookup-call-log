@@ -5,13 +5,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /*
 Module Name: Unified Phone Search & Call Log
 Description: Central Bangladesh phone lookup, call logs, CRM context, Chatwoot integration, customer/lead tabs and reporting for Perfex CRM.
-Version: 1.17.0
+Version: 1.19.0
 Requires at least: 2.3.*
 Author: Custom Development
 */
 
 define('UNIFIED_PHONE_MODULE_NAME', 'unified_phone');
-define('UNIFIED_PHONE_VERSION', '1.17.0');
+define('UNIFIED_PHONE_VERSION', '1.19.0');
 
 hooks()->add_action('admin_init', 'unified_phone_permissions');
 hooks()->add_action('admin_init', 'unified_phone_init_menu_items');
@@ -166,9 +166,10 @@ function unified_phone_register_lead_tab_content($lead)
         return;
     }
     $CI->load->model(UNIFIED_PHONE_MODULE_NAME . '/Unified_call_log_model', 'unified_call_log_model');
-    $logs = $CI->unified_call_log_model->get_for_lead_phone($lead, 100);
+    $logs = $CI->unified_call_log_model->get_for_lead_phone($lead, 10);
+    $total = $CI->unified_call_log_model->count_for_lead_phone($lead);
     echo '<div role="tabpanel" class="tab-pane" id="tab_unified_phone_call_logs">';
-    $CI->load->view('unified_phone/lead_tabs/call_logs', ['lead' => $lead, 'call_logs' => $logs]);
+    $CI->load->view('unified_phone/lead_tabs/call_logs', ['lead' => $lead, 'call_logs' => $logs, 'total_logs' => $total]);
     echo '</div>';
 }
 
@@ -234,19 +235,30 @@ function unified_phone_lead_modal_fallback_tab($lead_id)
 
 function unified_phone_add_head_components()
 {
-    if (is_admin()) {
+    if (!is_staff_logged_in()) {
+        return;
+    }
+
+    $CI = &get_instance();
+    $CI->load->helper(UNIFIED_PHONE_MODULE_NAME . '/unified_phone');
+
+    if (unified_phone_should_load_assets()) {
         echo '<link href="' . module_dir_url(UNIFIED_PHONE_MODULE_NAME, 'assets/css/unified_phone.css') . '?v=' . UNIFIED_PHONE_VERSION . '" rel="stylesheet" type="text/css" />';
     }
 }
 
 function unified_phone_add_footer_components()
 {
-    if (!is_admin()) {
+    if (!is_staff_logged_in()) {
         return;
     }
 
     $CI = &get_instance();
     $CI->load->helper(UNIFIED_PHONE_MODULE_NAME . '/unified_phone');
+
+    if (!unified_phone_should_load_assets()) {
+        return;
+    }
 
     $segment = $CI->uri->segment(2);
     $shouldRenderGlobalModal = $segment !== 'unified_phone'
@@ -263,8 +275,36 @@ function unified_phone_add_footer_components()
         ]);
     }
 
+    if (get_option('unified_phone_floating_call_button_enabled') === '1' && get_option('unified_phone_sip_enabled') === '1' && unified_phone_can('view')) {
+        echo '<a href="' . admin_url('unified_phone/call_by_sip') . '" class="unified-floating-call-btn" title="' . html_escape(_l('unified_phone_call_by_sip')) . '"><i class="fa fa-phone"></i></a>';
+    }
+
     echo '<script>window.unifiedPhoneSipScheme = ' . json_encode(unified_phone_sip_scheme()) . '; window.unifiedPhoneGlobalClickToCall = ' . (get_option('unified_phone_global_click_to_call_enabled') === '1' ? 'true' : 'false') . ';</script>';
     echo '<script src="' . module_dir_url(UNIFIED_PHONE_MODULE_NAME, 'assets/js/unified_phone.js') . '?v=' . UNIFIED_PHONE_VERSION . '"></script>';
+}
+
+function unified_phone_should_load_assets()
+{
+    if (!is_staff_logged_in()) {
+        return false;
+    }
+
+    $CI = &get_instance();
+    $segment = $CI->uri->segment(2);
+
+    if ($segment === 'unified_phone') {
+        return true;
+    }
+
+    if (get_option('unified_phone_enabled') !== '1' && !unified_phone_can('settings')) {
+        return false;
+    }
+
+    if (unified_phone_can('view') || unified_phone_can('create') || unified_phone_can('view_reports') || unified_phone_can('view_detail') || unified_phone_can('settings')) {
+        return true;
+    }
+
+    return false;
 }
 
 function unified_phone_module_action_links($actions)

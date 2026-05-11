@@ -4,7 +4,6 @@ $sections = [
     'proposals' => ['icon' => 'fa-file-text-o', 'label' => 'proposals'],
     'estimates' => ['icon' => 'fa-calculator', 'label' => 'estimates'],
     'invoices' => ['icon' => 'fa-file-text', 'label' => 'invoices'],
-    'payments' => ['icon' => 'fa-credit-card', 'label' => 'payments'],
     'projects' => ['icon' => 'fa-tasks', 'label' => 'projects'],
     'contracts' => ['icon' => 'fa-handshake-o', 'label' => 'contracts'],
     'tickets' => ['icon' => 'fa-life-ring', 'label' => 'tickets'],
@@ -30,8 +29,6 @@ foreach ($sections as $key => $meta) { if (unified_phone_section_enabled($key)) 
                         <a href="<?php echo admin_url('estimates/list_estimates/' . (int) $row['id']); ?>"><?php echo function_exists('format_estimate_number') ? format_estimate_number($row['id']) : '#' . (int) $row['id']; ?></a><br><small><?php echo unified_phone_money($row['total'] ?? 0); ?></small>
                     <?php } elseif ($key === 'invoices') { ?>
                         <a href="<?php echo admin_url('invoices/list_invoices/' . (int) $row['id']); ?>"><?php echo function_exists('format_invoice_number') ? format_invoice_number($row['id']) : '#' . (int) $row['id']; ?></a><br><small><?php echo unified_phone_money($row['total'] ?? 0); ?></small>
-                    <?php } elseif ($key === 'payments') { ?>
-                        <a href="<?php echo admin_url('payments/payment/' . (int) $row['id']); ?>"><?php echo _l('payment'); ?> #<?php echo (int) $row['id']; ?></a><br><small><?php echo unified_phone_money($row['amount'] ?? 0); ?> | <?php echo !empty($row['date']) ? unified_phone_format_date($row['date']) : '-'; ?></small>
                     <?php } elseif ($key === 'projects') { ?>
                         <a href="<?php echo admin_url('projects/view/' . (int) $row['id']); ?>"><?php echo html_escape($row['name'] ?? ('#' . (int) $row['id'])); ?></a><br><small><?php echo html_escape($row['status'] ?? ''); ?></small>
                     <?php } elseif ($key === 'contracts') { ?>

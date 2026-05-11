@@ -74,7 +74,7 @@ class Unified_phone_model extends App_Model
     public function related_records($client_ids = [], $lead_ids = [])
     {
         $data = [
-            'proposals' => [], 'estimates' => [], 'invoices' => [], 'payments' => [], 'projects' => [],
+            'proposals' => [], 'estimates' => [], 'invoices' => [], 'projects' => [],
             'contracts' => [], 'tickets' => [],
         ];
         $client_ids = array_values(array_filter(array_map('intval', (array) $client_ids)));
@@ -95,13 +95,6 @@ class Unified_phone_model extends App_Model
             }
             if (unified_phone_section_enabled('contracts') && $this->db->table_exists(db_prefix() . 'contracts')) {
                 $data['contracts'] = $this->db->where_in('client', $client_ids)->order_by('id', 'DESC')->limit(unified_phone_section_limit('contracts'))->get(db_prefix() . 'contracts')->result_array();
-            }
-            if (unified_phone_section_enabled('payments') && $this->db->table_exists(db_prefix() . 'invoicepaymentrecords') && $this->db->table_exists(db_prefix() . 'invoices')) {
-                $this->db->select('p.*, i.clientid, i.number as invoice_number, i.prefix as invoice_prefix, i.date as invoice_date', false);
-                $this->db->from(db_prefix() . 'invoicepaymentrecords as p');
-                $this->db->join(db_prefix() . 'invoices as i', 'i.id = p.invoiceid', 'left');
-                $this->db->where_in('i.clientid', $client_ids);
-                $data['payments'] = $this->db->order_by('p.date', 'DESC')->limit(unified_phone_section_limit('payments'))->get()->result_array();
             }
         }
 

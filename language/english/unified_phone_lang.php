@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $lang['unified_phone'] = 'Unified Phone';
 $lang['unified_phone_menu'] = 'Phone Lookup';
-$lang['unified_phone_search'] = 'Search By Phone';
+$lang['unified_phone_search'] = 'Search Phone';
 $lang['unified_phone_search_help'] = 'Supported formats: 017XXXXXXXX, 88017XXXXXXXX, +88017XXXXXXXX, 1712345678.';
 $lang['unified_phone_lookup'] = 'Phone Lookup';
 $lang['unified_phone_new_search'] = 'New Search';
@@ -27,7 +27,7 @@ $lang['unified_phone_outcome'] = 'Outcome';
 $lang['unified_phone_call_outcomes'] = 'Call Outcomes';
 $lang['unified_phone_note'] = 'Note';
 $lang['unified_phone_follow_up_required'] = 'Follow-up Required';
-$lang['unified_phone_follow_up_datetime'] = 'Follow-up';
+$lang['unified_phone_follow_up_datetime'] = 'Follow-up Date/Time';
 $lang['unified_phone_related_to'] = 'Related To';
 $lang['unified_phone_related_id'] = 'Related ID';
 $lang['unified_phone_related_records'] = 'Related Records';
@@ -110,11 +110,9 @@ $lang['lead'] = 'Lead';
 $lang['proposals'] = 'Proposals';
 $lang['estimates'] = 'Estimates';
 $lang['invoices'] = 'Invoices';
-$lang['payments'] = 'Payments';
 $lang['projects'] = 'Projects';
 $lang['contracts'] = 'Contracts';
 $lang['tickets'] = 'Tickets';
-$lang['payment'] = 'Payment';
 $lang['staff'] = 'Staff';
 $lang['options'] = 'Options';
 $lang['view'] = 'View';
@@ -190,3 +188,8 @@ $lang['unified_phone_recording_php_limit_error'] = 'The selected recording excee
 $lang['unified_phone_recording_client_size_error'] = 'The selected recording exceeds the allowed maximum size of %s KB.';
 
 $lang['unified_phone_recording_permission_note'] = 'Recording upload, playback, and download are controlled by the Access Call Recordings role permission.';
+
+$lang['unified_phone_min_digits_error'] = 'Please enter at least 4 digits to search.';
+$lang['unified_phone_floating_call_button_enabled'] = 'Enable Floating Call Button';
+$lang['unified_phone_more_call_logs'] = 'More';
+$lang['unified_phone_lead_tab_latest_note'] = 'Showing latest %s call logs for this lead phone number.';

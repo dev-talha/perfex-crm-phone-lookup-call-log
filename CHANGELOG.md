@@ -13,7 +13,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - Added Bangladesh phone number normalization.
 - Added URL-based phone search support.
 - Added CRM search support for customers, contacts, and leads.
-- Added Chatwoot API integration support.
+- Added Unichat API integration support.
 - Added Add Call Log feature.
 - Added basic call log list page.
 - Added reports page.
@@ -57,7 +57,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - End time now sets when user saves/adds call log.
 
 ### Improved
-- Removed Chatwoot as a call log relation option.
+- Removed Unichat as a call log relation option.
 - Related To changed to CRM-only records:
   - Project
   - Invoice
@@ -87,8 +87,8 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - Added Call Outcomes management basics.
 
 ### Changed
-- Removed manual Chatwoot Inbox ID field.
-- Chatwoot inboxes are now discovered from configured account.
+- Removed manual Unichat Inbox ID field.
+- Unichat inboxes are now discovered from configured account.
 - Removed follow-up fields temporarily from Add Call Log.
 
 ### Documented
@@ -96,7 +96,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
 
 ---
 
-## Version 1.4.0 - Chatwoot Display and Previous Call Log Pagination
+## Version 1.4.0 - Unichat Display and Previous Call Log Pagination
 
 ### Added
 - Added role-based permission for viewing call log details.
@@ -104,9 +104,9 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - Added View action in call logs options column.
 
 ### Improved
-- Chatwoot section now shows only when Chatwoot integration is enabled.
-- Chatwoot conversations limited to latest 10 records.
-- Chatwoot timestamp now displays as readable date/time.
+- Unichat section now shows only when Unichat integration is enabled.
+- Unichat conversations limited to latest 10 records.
+- Unichat timestamp now displays as readable date/time.
 - Previous Call Logs section shows latest call history with pagination.
 - Previous Call Logs limited to latest 100 matched records.
 - Previous Call Logs display 20 records per page.
@@ -161,7 +161,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - End Time now defaults to current time.
 
 ### Improved
-- Added clickable Chatwoot summary card at the top of the search result page when enabled.
+- Added clickable Unichat summary card at the top of the search result page when enabled.
 
 ---
 
@@ -323,7 +323,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
   - Search Result Sections
   - Call Log Form
   - SIP & Recordings
-  - Chatwoot/Unichat
+  - Unichat/Unichat
   - Permissions
 
 ---
@@ -351,7 +351,7 @@ This changelog summarizes the development history from version **1.0** to **1.17
 - Added compact dial pad.
 - Added keyboard input and paste support.
 - Moved instructions into an info/collapsible section.
-- Replaced Settings page `Chatwoot` text with `Unichat`.
+- Replaced Settings page `Unichat` text with `Unichat`.
 - Added API Timeout label with seconds unit.
 - Made Call Outcome color visible as badges in tables/details.
 
@@ -439,3 +439,80 @@ This version includes:
 - Export support
 - Tab-wise settings
 - Admin customizable fields, limits, permissions, sections, SIP, recording, and API settings
+
+---
+
+## [1.18.0] - Staff UI Fix, Payments Removal & Lead Call Log Improvements
+
+### Fixed
+- Fixed employee/staff UI issue where module CSS/JS loaded only for administrator users.
+- Corrected asset loading logic in:
+  - `unified_phone_add_head_components()`
+  - `unified_phone_add_footer_components()`
+- Normal permitted staff users now receive required module CSS/JS.
+- Controller and page-level permissions remain unchanged.
+- Fixed search error when searching with only 3 digits.
+
+### Changed
+- Removed the `Payments` section from all module areas:
+  - Search result UI
+  - Settings result visibility list
+  - Related records query/model usage
+  - Payment-related labels/references
+- Updated Search Phone validation:
+  - Minimum 4 digits are now required before search is allowed.
+  - Invalid short searches now show a warning instead of causing an error page.
+- Updated Search Phone form UI:
+  - `.unified-phone-search-form` max width set to `550px`.
+
+### Added
+- Added floating call button.
+  - Button opens the `Call By SIP` page.
+  - Added enable/disable setting under `Settings → General`.
+- Improved Lead Details Modal → `Call Log` tab:
+  - Shows maximum latest 10 call logs.
+  - If more than 10 logs exist, a `More` button appears.
+  - `More` button redirects to the Reports page with the lead phone number pre-filtered.
+
+### Validation
+- PHP syntax check passed.
+- JavaScript syntax check passed.
+- ZIP integrity test passed.
+
+---
+
+## [1.19.0] - UI & Language Polish Update
+
+### Changed
+- Removed the phone search input placeholder:
+  - `01712345678 / 8801712345678 / +8801712345678`
+- Updated phone search result page UI text:
+  - Replaced visible `Unichat` text with `Unichat` in the statistic block.
+  - Replaced visible `Unichat` text with `Unichat` in the result block.
+  - Internal/backend integration naming remains unchanged for compatibility.
+- Moved the floating call button from bottom-left to bottom-right using CSS only.
+- Reduced spacing inside the Lead Details Modal → `Call Log` tab.
+- Updated language file text for a cleaner user-facing experience.
+
+### Language Updates
+- Replaced:
+  - `Search by Bangladesh phone number. Supported formats: 017XXXXXXXX, 88017XXXXXXXX, +88017XXXXXXXX, 1712345678.`
+- With:
+  - `Supported formats: 017XXXXXXXX, 88017XXXXXXXX, +88017XXXXXXXX, 1712345678.`
+
+- Replaced:
+  - `Dial quickly through MicroSIP and create the call log in the same workflow.`
+- With:
+  - `Dial quickly through MicroSIP.`
+
+- Replaced:
+  - `Type, paste, or use the dial pad, then press Call Now.`
+- With:
+  - `Type, paste, or use the dial pad.`
+
+### Validation
+- PHP syntax check passed.
+- JavaScript syntax check passed.
+- ZIP integrity test passed.
+
+
