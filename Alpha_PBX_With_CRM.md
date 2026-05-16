@@ -35,7 +35,7 @@ C:\AlphaPBX
 MicroSIP-এর default installation/config location সাধারণত:
 
 ```text
-C:\Users\Alpha Net\AppData\Roaming\MicroSIP
+C:\Users\{YourUserName}\AppData\Roaming\MicroSIP
 ```
 
 এই folder-এ গিয়ে নিচের ফাইলটি খুঁজুন:
