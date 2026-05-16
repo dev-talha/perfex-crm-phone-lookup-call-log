@@ -135,6 +135,8 @@ $default_options = [
     'unified_phone_recording_max_size' => '10240',
     'unified_phone_recording_allowed_types' => 'mp3,wav,m4a,ogg,webm,mp4',
     'unified_phone_floating_call_button_enabled' => '1',
+    'unified_phone_floating_call_button_position' => 'right:20px',
+    'unified_phone_floating_call_button_bottom' => '20px',
 ];
 
 

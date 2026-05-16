@@ -9,6 +9,18 @@
     </div>
     <hr class="hr-panel-heading" />
     <?php echo form_open(admin_url('unified_phone/settings')); ?>
+    <?php
+    $floating_position_options = [];
+    foreach (['left' => 'Left', 'right' => 'Right'] as $side_value => $side_label) {
+        foreach (['-15px','20px','25px','30px','35px','40px','50px'] as $offset_value) {
+            $floating_position_options[] = ['id' => $side_value . ':' . $offset_value, 'name' => $side_label . ' ' . $offset_value];
+        }
+    }
+    $floating_bottom_options = [];
+    foreach (['15px','20px','25px','30px','35px','40px','50px','60px','70px','80px','90px','100px'] as $bottom_value) {
+        $floating_bottom_options[] = ['id' => $bottom_value, 'name' => $bottom_value];
+    }
+    ?>
 
     <ul class="nav nav-tabs unified-settings-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#up-general" aria-controls="up-general" role="tab" data-toggle="tab"><i class="fa fa-sliders"></i> <?php echo _l('settings_group_general'); ?></a></li>
@@ -32,6 +44,10 @@
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_export_enabled', 'unified_phone_export_enabled'); ?></div>
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_edit_after_save', 'unified_phone_edit_after_save'); ?></div>
                 <div class="col-md-3"><?php render_yes_no_option('unified_phone_floating_call_button_enabled', 'unified_phone_floating_call_button_enabled'); ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><?php echo render_select('unified_phone_floating_call_button_position', $floating_position_options, ['id','name'], 'unified_phone_floating_call_button_position', get_option('unified_phone_floating_call_button_position') ?: 'right:20px'); ?></div>
+                <div class="col-md-3"><?php echo render_select('unified_phone_floating_call_button_bottom', $floating_bottom_options, ['id','name'], 'unified_phone_floating_call_button_bottom', get_option('unified_phone_floating_call_button_bottom') ?: '20px'); ?></div>
             </div>
         </div>
 

@@ -55,7 +55,7 @@ class Unified_phone extends AdminController
             redirect(admin_url('unified_phone'));
         }
         $digitsOnly = preg_replace('/\D+/', '', $phone);
-        if (strlen($digitsOnly) < 4) {
+        if (strlen($digitsOnly) < 3) {
             set_alert('warning', _l('unified_phone_min_digits_error'));
             redirect(admin_url('unified_phone'));
         }
@@ -261,7 +261,7 @@ class Unified_phone extends AdminController
                 'unified_phone_edit_after_save', 'unified_phone_agents_edit_own', 'unified_phone_agents_delete_own',
                 'unified_phone_limit_default', 'unified_phone_limit_call_logs', 'unified_phone_limit_call_logs_history',
                 'unified_phone_sip_enabled', 'unified_phone_global_click_to_call_enabled', 'unified_phone_sip_uri_scheme',
-                'unified_phone_recording_enabled', 'unified_phone_recording_max_size', 'unified_phone_recording_allowed_types', 'unified_phone_floating_call_button_enabled'
+                'unified_phone_recording_enabled', 'unified_phone_recording_max_size', 'unified_phone_recording_allowed_types', 'unified_phone_floating_call_button_enabled', 'unified_phone_floating_call_button_position', 'unified_phone_floating_call_button_bottom'
             ];
             foreach (array_keys(unified_phone_add_log_required_fields()) as $requiredField) {
                 $fields[] = 'unified_phone_required_' . $requiredField;
@@ -305,6 +305,12 @@ class Unified_phone extends AdminController
                 }
                 if ($field === 'unified_phone_sip_uri_scheme') {
                     $value = in_array(strtolower((string) $value), ['sip', 'tel', 'callto'], true) ? strtolower((string) $value) : 'sip';
+                }
+                if ($field === 'unified_phone_floating_call_button_position') {
+                    $value = preg_match('/^(left|right):(-15px|20px|25px|30px|35px|40px|50px)$/', (string) $value) ? (string) $value : 'right:20px';
+                }
+                if ($field === 'unified_phone_floating_call_button_bottom') {
+                    $value = in_array((string) $value, ['15px','20px','25px','30px','35px','40px','50px'], true) ? (string) $value : '20px';
                 }
                 if ($field === 'unified_phone_recording_allowed_types') {
                     $value = preg_replace('/[^a-zA-Z0-9,]/', '', (string) $value);

@@ -189,7 +189,9 @@ $lang['unified_phone_recording_client_size_error'] = 'The selected recording exc
 
 $lang['unified_phone_recording_permission_note'] = 'Recording upload, playback, and download are controlled by the Access Call Recordings role permission.';
 
-$lang['unified_phone_min_digits_error'] = 'Please enter at least 4 digits to search.';
+$lang['unified_phone_min_digits_error'] = 'Please enter at least 3 digits to search.';
 $lang['unified_phone_floating_call_button_enabled'] = 'Enable Floating Call Button';
 $lang['unified_phone_more_call_logs'] = 'More';
 $lang['unified_phone_lead_tab_latest_note'] = 'Showing latest %s call logs for this lead phone number.';
+$lang['unified_phone_floating_call_button_position'] = 'Floating Button Position';
+$lang['unified_phone_floating_call_button_bottom'] = 'Floating Button Bottom';

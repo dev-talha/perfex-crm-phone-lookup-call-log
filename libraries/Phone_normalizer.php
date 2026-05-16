@@ -72,7 +72,7 @@ class Phone_normalizer
         }
         $keys = array_map('trim', $keys);
         $keys = array_filter(array_unique($keys), static function ($v) {
-            return $v !== '' && strlen($v) >= 4;
+            return $v !== '' && strlen($v) >= 3;
         });
         return array_values($keys);
     }

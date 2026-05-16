@@ -5,13 +5,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /*
 Module Name: Unified Phone Search & Call Log
 Description: Central Bangladesh phone lookup, call logs, CRM context, Chatwoot integration, customer/lead tabs and reporting for Perfex CRM.
-Version: 1.19.0
+Version: 1.20.0
 Requires at least: 2.3.*
 Author: Custom Development
 */
 
 define('UNIFIED_PHONE_MODULE_NAME', 'unified_phone');
-define('UNIFIED_PHONE_VERSION', '1.19.0');
+define('UNIFIED_PHONE_VERSION', '1.20.0');
 
 hooks()->add_action('admin_init', 'unified_phone_permissions');
 hooks()->add_action('admin_init', 'unified_phone_init_menu_items');
@@ -276,7 +276,11 @@ function unified_phone_add_footer_components()
     }
 
     if (get_option('unified_phone_floating_call_button_enabled') === '1' && get_option('unified_phone_sip_enabled') === '1' && unified_phone_can('view')) {
-        echo '<a href="' . admin_url('unified_phone/call_by_sip') . '" class="unified-floating-call-btn" title="' . html_escape(_l('unified_phone_call_by_sip')) . '"><i class="fa fa-phone"></i></a>';
+        $floatingPosition = unified_phone_floating_button_position();
+        $floatingBottom = unified_phone_floating_button_bottom();
+        $oppositeSide = $floatingPosition['side'] === 'left' ? 'right' : 'left';
+        $floatingStyle = $floatingPosition['side'] . ':' . $floatingPosition['offset'] . ';' . $oppositeSide . ':auto;bottom:' . $floatingBottom . ';';
+        echo '<a href="' . admin_url('unified_phone/call_by_sip') . '" class="unified-floating-call-btn" style="' . html_escape($floatingStyle) . '" title="' . html_escape(_l('unified_phone_call_by_sip')) . '"><i class="fa fa-phone"></i></a>';
     }
 
     echo '<script>window.unifiedPhoneSipScheme = ' . json_encode(unified_phone_sip_scheme()) . '; window.unifiedPhoneGlobalClickToCall = ' . (get_option('unified_phone_global_click_to_call_enabled') === '1' ? 'true' : 'false') . ';</script>';
@@ -305,6 +309,29 @@ function unified_phone_should_load_assets()
     }
 
     return false;
+}
+
+
+function unified_phone_floating_button_position()
+{
+    $value = (string) get_option('unified_phone_floating_call_button_position');
+    $allowedOffsets = ['-15px','20px','25px','30px','35px','40px','50px'];
+    $side = 'right';
+    $offset = '20px';
+
+    if (preg_match('/^(left|right):(-15px|20px|25px|30px|35px|40px|50px)$/', $value, $matches)) {
+        $side = $matches[1];
+        $offset = $matches[2];
+    }
+
+    return ['side' => $side, 'offset' => $offset];
+}
+
+function unified_phone_floating_button_bottom()
+{
+    $value = (string) get_option('unified_phone_floating_call_button_bottom');
+    $allowed = ['15px','20px','25px','30px','35px','40px','50px'];
+    return in_array($value, $allowed, true) ? $value : '20px';
 }
 
 function unified_phone_module_action_links($actions)

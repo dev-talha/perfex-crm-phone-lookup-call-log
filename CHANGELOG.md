@@ -515,4 +515,59 @@ This version includes:
 - JavaScript syntax check passed.
 - ZIP integrity test passed.
 
+# Changelog
 
+
+## [1.20.0] - Search Validation & Floating Button Settings Update
+
+### Changed
+- Updated Phone Search validation minimum length:
+  - Previous minimum: `4 digits`
+  - New minimum: `3 digits`
+- Updated related frontend/search validation to allow 3-digit searches.
+- Updated validation language/message to match the new 3-digit minimum.
+
+### Added
+- Added more configurable Floating Call Button settings under:
+  - `Settings → General`
+
+New options include:
+
+#### Floating Button Enable/Disable
+- Existing enable/disable option remains available.
+
+#### Floating Button Position
+Admin can now choose one active position from:
+
+- `Left -15px`
+- `Left 20px`
+- `Left 25px`
+- `Left 30px`
+- `Left 35px`
+- `Left 40px`
+- `Left 50px`
+- `Right -15px`
+- `Right 20px`
+- `Right 25px`
+- `Right 30px`
+- `Right 35px`
+- `Right 40px`
+- `Right 50px`
+
+Only one side, left or right, is active at a time.
+
+#### Floating Button Bottom
+Admin can now choose bottom spacing from:
+
+- `15px`
+- `20px`
+- `25px`
+- `30px`
+- `35px`
+- `40px`
+- `50px`
+
+### Validation
+- PHP syntax check passed.
+- JavaScript syntax check passed.
+- ZIP integrity test passed.
